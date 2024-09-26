@@ -7,20 +7,32 @@ import { RadioButton as PaperRadioButton } from 'react-native-paper';
 const questions = [
   {
     id: '1',
-    question: '¿Dónde Nació Cristiano Ronaldo?',
-    options: ['París', 'Portugal', 'Berlín', 'Madrid'],
+    question: '¿Cuál es el nombre del experimento que se escapa y se convierte en Stitch?',
+    options: ['Jumba', 'Experiment 626', 'Lilo', 'Nani'],
     answer: '',
   },
   {
     id: '2',
-    question: '¿Cuántos balones de oro tiene Cristiano Ronaldo?',
-    options: ['7', '9', '4', '5'],
+    question: '¿Qué especie es Stitch?',
+    options: ['Perro', 'Gato', 'Experimento', 'Pájaro'],
     answer: '',
   },
   {
     id: '3',
-    question: '¿Cuántos goles oficiales lleva Cristiano Ronaldo en su carrera?',
-    options: ['901', '842', '1000', '934'],
+    question: '¿Dónde vive Lilo?',
+    options: ['En una isla', 'En un apartamento', 'En un barco', 'En un bosque'],
+    answer: '',
+  },
+  {
+    id: '4',
+    question: '¿Cuál es el hobbby de Lilo?',
+    options: ['Surfear', 'Bailar', 'Fotografiar', 'Cocinar'],
+    answer: '',
+  },
+  {
+    id: '5',
+    question: '¿Qué animal tiene Lilo como mascota?',
+    options: ['Un perro', 'Una tortuga', 'Un muñeco', 'Un gato'],
     answer: '',
   },
 ];
@@ -38,10 +50,8 @@ const QuizScreen = () => {
   };
 
   const handleSubmit = () => {
-    // Aquí puedes manejar la lógica de envío de respuestas
     const allAnswered = questions.every(q => selectedAnswers[q.id] !== '');
     if (allAnswered) {
-      // Mostrar las respuestas en un alert o manejar la lógica de envío
       Alert.alert('Respuestas Enviadas', `Respuestas: ${JSON.stringify(selectedAnswers)}`);
       
       // Resetear el cuestionario

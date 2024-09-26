@@ -1,16 +1,27 @@
-// App.js
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Icon from 'react-native-vector-icons/MaterialIcons'; // Importa los iconos de MaterialIcons
+import { createStackNavigator } from '@react-navigation/stack';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
-// Importamos las pantallas desde la carpeta 'screens'
+import WelcomeScreen from './screens/welcomeScreen';
 import ImageScreen from './screens/ImageScreen';
 import OptionsScreen from './screens/OptionsScreen';
 import QuizScreen from './screens/QuizScreen';
+import DetailScreen from './screens/DetailScreen';
 
-// Creamos el BottomTabNavigator
+
+const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
+
+const ImageStack = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="Image1" component={ImageScreen} />
+      <Stack.Screen name="Detail" component={DetailScreen} />
+    </Stack.Navigator>
+  );
+};
 
 export default function App() {
   return (
@@ -20,23 +31,25 @@ export default function App() {
           tabBarIcon: ({ color, size }) => {
             let iconName;
 
-            if (route.name === 'Image') {
-              iconName = 'image'; // Icono para la pantalla de imágenes
+            if (route.name === 'Welcome') {
+              iconName = 'home';
+            } else if (route.name === 'Image') {
+              iconName = 'image';
             } else if (route.name === 'Options') {
-              iconName = 'settings'; // Icono para la pantalla de opciones
+              iconName = 'settings';
             } else if (route.name === 'Quiz') {
-              iconName = 'question-answer'; // Icono para la pantalla de cuestionario
+              iconName = 'question-answer';
             }
 
-            // Puedes devolver cualquier componente de icono aquí
             return <Icon name={iconName} size={size} color={color} />;
           },
         })}
       >
-        <Tab.Screen name="Image" component={ImageScreen} />
+        <Tab.Screen name="Welcome" component={WelcomeScreen} />
+        <Tab.Screen name="Image" component={ImageStack} />
         <Tab.Screen name="Options" component={OptionsScreen} />
         <Tab.Screen name="Quiz" component={QuizScreen} />
       </Tab.Navigator>
     </NavigationContainer>
   );
-  }
+}
